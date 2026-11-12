@@ -1,0 +1,37 @@
+
+\documentclass[margin=10pt]{standalone}
+\usepackage{tikz,forest}
+\usetikzlibrary{arrows.meta}
+\forestset{
+default preamble={
+before typesetting nodes={
+  !r.replace by={[, coordinate, append]}
+},  
+where n children=0{
+  tier=word,
+}{  
+  %diamond, aspect=2,
+},  
+where level=0{}{
+  if n=1{
+    edge label={node[pos=.2, above] {Y}},
+  }{  
+    edge label={node[pos=.2, above] {N}},
+  }   
+},  
+for tree={
+  edge+={thick, -Latex},
+  s sep'+=2cm,
+  draw,
+  thick,
+  edge path'={ (!u) -| (.parent)},
+  align=center,
+}   
+}
+}\begin{document}\begin{forest}[Val($2$) $ \leq 2.45$ \\ Imp. $0.39$
+	[Label: 0]
+	[Val($2$) $ \leq 4.95$ \\ Imp. $0.33$
+		[Label: 1]
+		[Label: 2]]]
+	\end{forest}
+\end{document}
